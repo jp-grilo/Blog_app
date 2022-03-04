@@ -6,6 +6,8 @@ require('../models/Categoria')
 const Categoria = mongoose.model("categorias")
 require('../models/Postagem')
 const Postagem = mongoose.model("postagens")
+
+
 router.get('/', (req, res) => {
     res.render("admin/index")
 })
@@ -88,6 +90,7 @@ router.get("/postagens", (req, res) =>{
     res.render("admin/postagens")
 })
 
+
 router.get("/postagens/addpostagem", (req, res) =>{
     Categoria.find().lean().then((categorias) =>{
         res.render("admin/addpostagem", {categorias: categorias})
@@ -117,8 +120,8 @@ router.post("/postagens/nova", (req,res) =>{
         erros.push({text: "Conteúdo inválida"})
     }
 
-    if(!req.body.categoria == "0"){
-        erros.push({text: "Categoria inválida"})
+    if(req.body.categoria == "0"){
+        erros.push({text: "Categoria inválida, registre uma categoria"})
     }
 
     if(erros.length>0){
@@ -139,6 +142,7 @@ router.post("/postagens/nova", (req,res) =>{
             req.flash("error_msg", "Houve um erro ao salvar a postagem, tente novamente.")
             res.redirect("/admin/postagens")
         })
+
     }
 })
 

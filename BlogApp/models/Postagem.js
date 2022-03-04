@@ -1,5 +1,5 @@
-const mongoose = require("mongoose")
-const Schema = mongosse.Schema
+const mongoose = require ('mongoose')
+const Schema = mongoose.Schema
 
 const Postagem = new Schema({
     titulo: {
@@ -29,4 +29,4 @@ const Postagem = new Schema({
     }
 })
 
-mongoose.model("postagens", "Postagem")
+mongoose.model("postagens", Postagem)
